@@ -1,0 +1,207 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
+$blue-1: #437f97;
+$dark-1: #202020;
+$dark-2: #333333;
+$dark-3: #424242;
+$font-family: "Poppins", sans-serif;
+$radius: 5px;
+$fontLightColor: rgb(225, 225, 225);
+@mixin dimensions($width, $height) {
+	width: $width;
+	height: $height;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background: $dark-1;
+	color: $fontLightColor;
+	overflow-x: hidden;
+	font-family: $font-family;
+}
+img {
+	width: 100%;
+}
+.home {
+	padding: 16px;
+	width: calc(100% - 240px);
+	margin-bottom: 100px;
+}
+.itemImg {
+	@include dimensions(200px, 200px);
+	object-fit: contain;
+	img {
+		border-top-right-radius: $radius;
+		border-top-left-radius: $radius;
+	}
+}
+.home__header {
+	display: flex;
+	justify-content: space-between;
+}
+.App {
+	display: flex;
+}
+.homerow__rowItems {
+	display: flex;
+	overflow: scroll;
+}
+.landscape {
+	width: 50%;
+	max-width: 700px;
+	.landscapeBtn {
+		flex-direction: row !important;
+		justify-content: flex-start !important;
+	}
+	.landscapeImg {
+		@include dimensions(100px, 100px);
+		margin-right: 20px;
+	}
+	.landscapeItemDetails {
+		width: inherit;
+		height: inherit;
+		align-items: initial;
+		justify-content: initial;
+	}
+}
+.item {
+	border-radius: $radius;
+	margin: 10px 15px 10px 0;
+	cursor: pointer;
+	display: flex;
+	flex-direction: column;
+	background-color: $dark-3;
+	.itemDetails {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		justify-content: center;
+		padding: 5px;
+		max-width: 200px;
+	}
+	.itemTitle {
+		font-size: 16px;
+		text-transform: capitalize;
+		margin: 5px 0;
+	}
+	.itemBtn {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+	}
+}
+
+.homerow__rowItems::-webkit-scrollbar {
+	display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.homerow__rowItems {
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
+}
+.search {
+	padding: 16px;
+	margin-bottom: 70px;
+
+	.searchResults {
+		width: calc(100vw - 240px);
+	}
+	.searchResult {
+		width: 50% !important;
+		margin: 15px !important;
+		padding: 16px !important;
+	}
+	.searchResult__albumCover {
+		width: 100px;
+		height: 100px;
+		object-fit: contain;
+	}
+}
+.playlist {
+	margin: 16px 0;
+	margin-bottom: 100px;
+	width: 100%;
+
+	.playlist__header {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+	.pageImgContainer {
+		@include dimensions(300px, 300px);
+	}
+	.playlist__header .playlist__details {
+		margin: 20px;
+	}
+	.playlist__tracks {
+		width: 100%;
+	}
+	.playlist__tracks .item {
+		margin: 10px auto;
+	}
+}
+.MuiButtonBase-root,
+.MuiTypography-root {
+	font-family: $font-family !important;
+}
+.player {
+	margin-left: 240px;
+	width: calc(100% - 240px);
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	.PlayerRSWP {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 10px 15px;
+		border-radius: $radius;
+	}
+}
+.MuiBottomNavigationAction-label {
+	color: $fontLightColor;
+}
+.MuiButton-root {
+	background-color: $dark-3 !important;
+	color: $fontLightColor !important;
+}
+@media (max-width: 750px) {
+	.player {
+		margin-left: 0;
+		bottom: 50px;
+		width: 100%;
+	}
+	.bottom_nav {
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+	}
+	.searchResult,
+	.searchResults,
+	.home {
+		width: 100%;
+	}
+	.landscape {
+		width: 80%;
+	}
+	.pageImgContainer {
+		@include dimensions(180px, 180px);
+	}
+	.itemImg {
+		@include dimensions(150px, 150px);
+	}
+	.itemTitle {
+		font-size: 10px;
+	}
+	.home,
+	.playlist {
+		margin-bottom: 140px;
+	}
+}
