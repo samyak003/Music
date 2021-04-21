@@ -23,11 +23,11 @@ function Playlist({ spotify }) {
 		}
 	}, [id, location, spotify]);
 	return (
-		<div className="playlist">
-			<div className="playlist__header">
-				<div className="pageImgContainer">
+		<section className="playlist">
+			<header className="playlist__header">
+				<figure className="pageImgContainer">
 					<img src={location.state.imgLink} alt={location.state.title} />
-				</div>
+				</figure>
 				<div className="playlist__details">
 					<h2>{location.state.title}</h2>
 				</div>
@@ -42,8 +42,8 @@ function Playlist({ spotify }) {
 				>
 					Play
 				</Button>
-			</div>
-			<div className="playlist__tracks">
+			</header>
+			<main className="playlist__tracks">
 				{items.map((track, index) => {
 					if (location.state.type === "album") {
 						var _track = track;
@@ -66,8 +66,8 @@ function Playlist({ spotify }) {
 						/>
 					);
 				})}
-			</div>
-		</div>
+			</main>
+		</section>
 	);
 }
 

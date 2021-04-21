@@ -8,7 +8,7 @@ function Home() {
 
 	return (
 		<div className="home">
-			<div className="home__header">
+			<header className="home__header">
 				<h2>Welcome {user?.display_name}</h2>
 				<ButtonBase>
 					{user?.images.length > 0 ? (
@@ -17,8 +17,8 @@ function Home() {
 						<Avatar alt={user?.display_name}>{user?.display_name[0]}</Avatar>
 					)}
 				</ButtonBase>
-			</div>
-			<div className="home__rows">
+			</header>
+			<section className="home__rows">
 				{home__rows?.map((home__row, index) => (
 					<HomeRow
 						title={home__row.title}
@@ -26,7 +26,7 @@ function Home() {
 						items={home__row.items}
 					/>
 				))}
-			</div>
+			</section>
 		</div>
 	);
 }

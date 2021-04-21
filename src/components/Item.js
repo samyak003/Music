@@ -38,9 +38,9 @@ function Item({
 				className={landscape ? "landscapeBtn itemBtn" : "itemBtn"}
 				onClick={handleClick}
 			>
-				<div className={landscape ? "landscapeImg itemImg" : "itemImg"}>
+				<figure className={landscape ? "landscapeImg itemImg" : "itemImg"}>
 					<img src={imgLink} alt={title} />
-				</div>
+				</figure>
 				<div
 					className={
 						landscape ? "itemDetails landscapeItemDetails" : "itemDetails"

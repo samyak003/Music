@@ -36,12 +36,38 @@ const useStyles = makeStyles((theme) => ({
 		padding: theme.spacing(3),
 	},
 }));
-
 export default function PermanentDrawerLeft() {
 	const classes = useStyles();
 	const history = useHistory();
 	const [open, setOpen] = useState(false);
 	const [, dispatch] = useStateValue();
+	const signOut = () => {
+		dispatch({
+			type: "SET_USER",
+			user: null,
+		});
+		dispatch({
+			type: "SET_TOKEN",
+			token: null,
+		});
+	};
+	const drawerItems = [
+		{
+			title: "Home",
+			icon: <HomeIcon />,
+			onClick: () => history.push("/"),
+		},
+		{
+			title: "Search",
+			icon: <SearchIcon />,
+			onClick: () => history.push("/search"),
+		},
+		{
+			title: "Sign Out",
+			icon: <ExitToAppIcon />,
+			onClick: signOut,
+		},
+	];
 
 	return (
 		<Drawer
@@ -53,36 +79,12 @@ export default function PermanentDrawerLeft() {
 			classes={{ paper: classes.drawerPaper }}
 		>
 			<List>
-				<ListItem button onClick={() => history.push("/")}>
-					<ListItemIcon>
-						<HomeIcon className={classes.icon} />
-					</ListItemIcon>
-					<ListItemText primary="Home" />
-				</ListItem>
-				<ListItem button onClick={() => history.push("/search")}>
-					<ListItemIcon>
-						<SearchIcon className={classes.icon} />
-					</ListItemIcon>
-					<ListItemText primary="Search" />
-				</ListItem>
-				<ListItem
-					button
-					onClick={() => {
-						dispatch({
-							type: "SET_USER",
-							user: null,
-						});
-						dispatch({
-							type: "SET_TOKEN",
-							token: null,
-						});
-					}}
-				>
-					<ListItemIcon>
-						<ExitToAppIcon className={classes.icon} />
-					</ListItemIcon>
-					<ListItemText primary="Sign Out" />
-				</ListItem>
+				{drawerItems.map((item) => (
+					<ListItem button onClick={item.onClick}>
+						<ListItemIcon className={classes.icon}>{item.icon}</ListItemIcon>
+						<ListItemText primary={item.title} />
+					</ListItem>
+				))}
 			</List>
 			<Divider />
 		</Drawer>

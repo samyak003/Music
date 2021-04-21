@@ -8,7 +8,7 @@ function Player() {
 	useEffect(() => setPlay(true), [uri]);
 	if (!token) return null;
 	return (
-		<div className="player">
+		<section className="player">
 			<SpotifyPlayer
 				className="spotifyPlayer"
 				token={token}
@@ -34,7 +34,7 @@ function Player() {
 					sliderHandleColor: "rgb(225, 225, 225)",
 				}}
 			/>
-		</div>
+		</section>
 	);
 }
 

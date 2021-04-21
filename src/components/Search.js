@@ -63,8 +63,8 @@ function Search({ spotify }) {
 			});
 	};
 	return (
-		<div className="search">
-			<div className={classes.search}>
+		<section className="search">
+			<article className={classes.search}>
 				<form onSubmit={search}>
 					<div className={classes.searchIcon}>
 						<SearchIcon />
@@ -80,8 +80,8 @@ function Search({ spotify }) {
 						inputProps={{ "aria-label": "search" }}
 					/>
 				</form>
-			</div>
-			<div className="searchResults">
+			</article>
+			<article className="searchResults">
 				{results && <p>Found {results.length} results for this quary.</p>}
 				{results?.map((item, index) => {
 					return (
@@ -100,8 +100,8 @@ function Search({ spotify }) {
 						/>
 					);
 				})}
-			</div>
-		</div>
+			</article>
+		</section>
 	);
 }
 

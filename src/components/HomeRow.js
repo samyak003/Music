@@ -3,7 +3,7 @@ import Item from "./Item";
 
 function HomeRow({ title, items }) {
 	return (
-		<div className="homerow">
+		<article className="homerow">
 			<h2>{title}</h2>
 			<div className="homerow__rowItems">
 				{items?.map((item, index) => {
@@ -33,7 +33,7 @@ function HomeRow({ title, items }) {
 					);
 				})}
 			</div>
-		</div>
+		</article>
 	);
 }
 

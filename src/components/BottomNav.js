@@ -22,6 +22,33 @@ export default function BottomNav() {
 	const history = useHistory();
 	const [, dispatch] = useStateValue();
 	const [value, setValue] = React.useState(0);
+	const signOut = () => {
+		dispatch({
+			type: "SET_USER",
+			user: null,
+		});
+		dispatch({
+			type: "SET_TOKEN",
+			token: null,
+		});
+	};
+	const drawerItems = [
+		{
+			title: "Home",
+			icon: <HomeIcon className={classes.btn} />,
+			onClick: () => history.push("/"),
+		},
+		{
+			title: "Search",
+			icon: <SearchIcon className={classes.btn} />,
+			onClick: () => history.push("/search"),
+		},
+		{
+			title: "Sign Out",
+			icon: <ExitToAppIcon className={classes.btn} />,
+			onClick: signOut,
+		},
+	];
 
 	return (
 		<BottomNavigation
@@ -32,30 +59,14 @@ export default function BottomNav() {
 			showLabels
 			className={classes.root}
 		>
-			<BottomNavigationAction
-				label="Home"
-				onClick={() => history.push("/")}
-				icon={<HomeIcon className={classes.btn} />}
-			/>
-			<BottomNavigationAction
-				label="Search"
-				onClick={() => history.push("/search")}
-				icon={<SearchIcon className={classes.btn} />}
-			/>
-			<BottomNavigationAction
-				label="Sign Out"
-				onClick={() => {
-					dispatch({
-						type: "SET_USER",
-						user: null,
-					});
-					dispatch({
-						type: "SET_TOKEN",
-						token: null,
-					});
-				}}
-				icon={<ExitToAppIcon className={classes.btn} />}
-			/>
+			{drawerItems.map((item) => (
+				<BottomNavigationAction
+					label={item.title}
+					onClick={item.onClick}
+					icon={item.icon}
+					className={classes.btn}
+				/>
+			))}
 		</BottomNavigation>
 	);
 }

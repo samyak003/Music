@@ -54,51 +54,37 @@ function App() {
 			});
 		}
 	}, [dispatch]);
+	const routes = [
+		{ path: "/search", component: <Search spotify={spotify} /> },
+		{ path: "/playlist/:id", component: <Playlist spotify={spotify} /> },
+		{ path: "/album/:id", component: <Playlist spotify={spotify} /> },
+		{ path: "/", component: <Home /> },
+	];
 	return (
 		<div className="App">
 			{!token ? (
 				<Login />
 			) : (
-				<>
-					<Router>
-						<Suspense fallback={<div>Loading...</div>}>
-							{mobile ? <Drawer /> : <></>}
-							<Switch>
-								<Route path="/search">
+				<Router>
+					<Suspense fallback={<div>Loading...</div>}>
+						{mobile && <Drawer />}
+						<Switch>
+							{routes.map((route) => (
+								<Route path={route.path}>
 									<div style={{ width: "100%" }}>
-										<Search spotify={spotify} />
+										{route.component}
 										<Player />
 									</div>
 								</Route>
-								<Route path="/playlist/:id">
-									<div style={{ width: "100%" }}>
-										<Playlist spotify={spotify} />
-										<Player />
-									</div>
-								</Route>
-								<Route path="/album/:id">
-									<div style={{ width: "100%" }}>
-										<Playlist spotify={spotify} />
-										<Player />
-									</div>
-								</Route>
-								<Route path="/">
-									<div style={{ width: "100%" }}>
-										<Home />
-										<Player />
-									</div>
-								</Route>
-							</Switch>
-							{!mobile ? (
-								<div className="bottom_nav">
-									<BottomNav />
-								</div>
-							) : (
-								<></>
-							)}
-						</Suspense>
-					</Router>
-				</>
+							))}
+						</Switch>
+						{!mobile && (
+							<div className="bottom_nav">
+								<BottomNav />
+							</div>
+						)}
+					</Suspense>
+				</Router>
 			)}
 		</div>
 	);
